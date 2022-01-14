@@ -1,8 +1,6 @@
 package com.lei.secretkey.RSA;
 
 import org.apache.commons.codec.binary.Base64;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import java.nio.charset.StandardCharsets;
@@ -99,7 +97,7 @@ public class RSAUtil1 {
      */
     public static String encryptByPrivateKey(String str, String privateKeyStr) throws Exception {
         // 获取私钥 PKCS8EncodedKeySpec 用这样的私钥格式
-        byte[] keyBytes = new BASE64Decoder().decodeBuffer(privateKeyStr);
+        byte[] keyBytes = Base64.decodeBase64(privateKeyStr);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
@@ -108,7 +106,7 @@ public class RSAUtil1 {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
         byte[] cipherText = cipher.doFinal(str.getBytes());
-        return new BASE64Encoder().encode(cipherText);
+        return Base64.encodeBase64String(cipherText);
     }
 
     /**
@@ -121,7 +119,7 @@ public class RSAUtil1 {
      */
     public static String decryptByPublicKey(String str, String publicKeyStr) throws Exception {
         // 获取公钥 PKCS8EncodedKeySpec 用这样的公钥格式
-        byte[] keyBytes = new BASE64Decoder().decodeBuffer(publicKeyStr);
+        byte[] keyBytes = Base64.decodeBase64(publicKeyStr);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
@@ -129,7 +127,7 @@ public class RSAUtil1 {
 //        PublicKey publicKey = getPublicKey(KEY_MAP.get(0));
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
-        byte[] cipherText = new BASE64Decoder().decodeBuffer(str);
+        byte[] cipherText = Base64.decodeBase64(str);
         byte[] decryptText = cipher.doFinal(cipherText);
         return new String(decryptText);
     }
