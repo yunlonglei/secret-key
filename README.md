@@ -71,5 +71,5 @@ jobs:
 ## maven打包
 
 - 使用maven配置文件setting_toaliyun.xm发布不到[阿里云效](https://developer.aliyun.com/mvn/guide)
-- 也可以使用maven配置文件setting_togithub.xml发布到Github Packages（但是还有问题）,mvn deploy。
-- Github创建release时自动运行Github工作流[maven-publish](./.github/workflows/maven-publish.yml)自动打包，这个文件还是有问题，不能回去获取到github_token。
+- 也可以使用maven配置文件setting_aliyun.xml发布到Github Packages,idea 的 mvn deploy。
+- Github创建release时自动运行Github工作流[maven-publish](./.github/workflows/maven-publish.yml)自动打包。
