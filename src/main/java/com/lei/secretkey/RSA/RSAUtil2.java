@@ -31,7 +31,7 @@ public class RSAUtil2 {
      *
      * @throws NoSuchAlgorithmException 异常
      */
-    private static void generateKeyPair() throws NoSuchAlgorithmException {
+    private static Map generateKeyPair() throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator;
         keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(1024);
@@ -45,6 +45,7 @@ public class RSAUtil2 {
         // 将公钥和私钥保存到Map
         KEY_MAP.put(0, publicKeyStr);
         KEY_MAP.put(1, privateKeyStr);
+        return KEY_MAP;
     }
 
     /**

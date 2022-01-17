@@ -30,7 +30,7 @@ public class RSAUtil1 {
      *
      * @throws NoSuchAlgorithmException
      */
-    public static void genKeyPair() throws NoSuchAlgorithmException {
+    public static Map<Integer, String> genKeyPair() throws NoSuchAlgorithmException {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         // 初始化密钥对生成器，密钥大小为96-1024位
@@ -47,6 +47,7 @@ public class RSAUtil1 {
         // 将公钥和私钥保存到Map
         KEY_MAP.put(0, publicKeyString);
         KEY_MAP.put(1, privateKeyString);
+        return KEY_MAP;
     }
 
     /**

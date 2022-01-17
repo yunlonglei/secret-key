@@ -64,17 +64,18 @@ public class SM4_ECB_Util {
      * @return
      * @explain
      */
-    public static byte[] generateKey(int keySize) throws Exception {
+    public static String generateKey(int keySize) throws Exception {
         KeyGenerator kg = KeyGenerator.getInstance(ALGORITHM_NAME, BouncyCastleProvider.PROVIDER_NAME);
         kg.init(keySize, new SecureRandom());
-        return kg.generateKey().getEncoded();
+        byte[] encoded = kg.generateKey().getEncoded();
+        return new String(Hex.encodeHex(encoded, false));
     }
 
     public static void main(String[] args) throws Exception {
         // 原始数据
         String data = "123456";
         // 密钥
-        String key = new String(Hex.encodeHex(generateKey(128), false));
+        String key = generateKey(128);
         System.out.println("原数据：" + data);
         System.out.println("密钥：" + key);
         String encrypt = encrypt(data, key);
