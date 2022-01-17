@@ -70,3 +70,44 @@ jobs:
 - 使用maven配置文件setting_toaliyun.xm发布不到[阿里云效](https://developer.aliyun.com/mvn/guide)
 - 也可以使用maven配置文件setting_aliyun.xml发布到Github Packages,idea 的 mvn deploy。
 - Github创建release时自动运行Github工作流[maven-publish](./.github/workflows/maven-publish.yml)自动打包。
+## 打第三方依赖包
+打成第三方依赖包，供其他的服务引用使用。
+
+```xml
+<build>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 要将源码放上去，需要加入这个插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+</build>
+```
