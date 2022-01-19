@@ -1,7 +1,7 @@
 ## RSA2Util的前端调用方法
 ### 公钥加密、私钥解密
     私钥前端加密，公钥后端解密
-`npm i wxmp-rsa -S`
+`npm i wxmp-rsa -S`，这种方式使用的是`RSA/ECB/PKCS1Padding`的加密方式。
 ```js
 import WxmpRsa from 'wxmp-rsa'
 
