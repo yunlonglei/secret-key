@@ -88,7 +88,6 @@ public class SM3Util {
      * @return 校验结果
      * @explain 通过验证原数组和生成的hash数组是否为同一数组，验证2者是否为同一数据
      */
-
     public static boolean verify(String srcStr, String sm3HexString) {
         boolean flag = false;
         try {
